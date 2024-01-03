@@ -10,9 +10,7 @@
   rules:
     - name: Say Hello
       condition: event.payload is defined
-#     condition: event.payload.message == "xxx"
       action:
-#       debug:
         run_job_template:
           name: debug_eda
           organization: Default
