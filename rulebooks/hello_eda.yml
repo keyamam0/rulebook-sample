@@ -12,6 +12,6 @@
       condition: event.payload is defined
       action:
         run_job_template:
-          name: debug_eda
+          name: 'Demo Job Template'
           organization: Default
 
