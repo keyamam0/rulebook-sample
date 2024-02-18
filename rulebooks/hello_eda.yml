@@ -15,3 +15,6 @@
           name: 'Demo Job Template'
           organization: Default
 
+    - name: Debug payload
+      debug:
+        msg: "Payload content: {{ payload }}"
