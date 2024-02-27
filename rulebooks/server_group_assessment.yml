@@ -15,6 +15,6 @@
           name: 'Server Group Assessment'
           organization: Default
           extra_vars:
-            host_ip: "{{ event.payload.host_ip }}"
+            zabbix_host_group: "{{ event.payload.host_groups }}"
         debug:
          msg: "Received: {{ event.payload.host_groups }}"         
