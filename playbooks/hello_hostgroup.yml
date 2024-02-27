@@ -1,0 +1,12 @@
+---
+- name: Execute df command on hosts from Zabbix host group
+  hosts: localhost
+  gather_facts: no
+
+  vars:
+    host_group: "{{ zabbix_host_group | default('Linux servers') }}"
+
+  tasks:
+    - name: Show df command output
+      debug:
+        msg: "{{ host_group }}"
