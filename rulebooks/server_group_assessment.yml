@@ -15,5 +15,5 @@
           name: 'Server Group Assessment'
           organization: Default
           extra_vars:
-            zabbix_host_group: "{{ event.payload.host_ip }}"
+            zabbix_host_group: "aiueo"
     
