@@ -4,7 +4,7 @@
   gather_facts: no
 
   vars:
-    host_group: "{{ zabbix_host_group | default('Linux servers') }}"
+    host_group: "{{ ansible_eda.event.payload.host_groups | default('blank') }}"
 
   tasks:
     - name: Show df command output
