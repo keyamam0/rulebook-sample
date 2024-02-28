@@ -14,6 +14,9 @@
         run_job_template:
           name: 'Server Group Assessment'
           organization: Default
-          extra_vars:
-            zabbix_host_group: "aiueo"
+
+#Playbookに対するextra_varsなどによる明示的なパラメーター渡しは機能しないようだ
+#DefaultでPayloadが丸ごとPlaybookのパラメータとして渡される
+#          extra_vars:
+#            zabbix_host_group: "aiueo"
     
