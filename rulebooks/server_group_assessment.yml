@@ -16,5 +16,4 @@
           organization: Default
           extra_vars:
             zabbix_host_group: "{{ event.payload.host_ip }}"
-        debug:
-         msg: "Received: {{ event.payload.host_groups }}"         
+    
