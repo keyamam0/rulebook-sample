@@ -1,3 +1,4 @@
+---
 # zabbix_inventory.yml
 plugin: community.zabbix.zabbix_inventory
 zabbix_server: http://3.112.4.238
