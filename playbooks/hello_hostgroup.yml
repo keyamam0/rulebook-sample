@@ -14,7 +14,8 @@
         msg: "{{ host_group }}{{ target_ip }}"      
 
     - name: Check if the host matches the specific IP address
-      ansible.builtin.command: 
+      #ansible.builtin.command: 
+      ansible.builtin.shell: 
         cmd: du -a / | sort -n -r | head -n 5
       register: disk_usage
       when: ansible_host == target_ip
