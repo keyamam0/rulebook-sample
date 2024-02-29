@@ -12,6 +12,7 @@
     - name: Show df command output
       debug:
         msg: "{{ host_group }}"
+        msg: "{{ target_ip }}"
 
     - name: Check if the host matches the specific IP address
       ansible.builtin.command: 
