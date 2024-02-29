@@ -1,7 +1,8 @@
 ---
 # zabbix_inventory.yml
 plugin: community.zabbix.zabbix_inventory
-zabbix_server: "3.112.4.238"
-zabbix_user: Admin
-zabbix_password: "AppRaE+If7Fbpm2+BMo"
+#zabbix_server: "https://3.112.4.238"
+server_url: "https://3.112.4.238"
+login_user: Admin
+login_password: "AppRaE+If7Fbpm2+BMo"
 validate_certs: false
