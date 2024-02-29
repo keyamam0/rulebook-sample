@@ -17,7 +17,7 @@
       #ansible.builtin.command: 
       ansible.builtin.shell: 
         #cmd: du -a / | sort -n -r | head -n 5
-        cmd: find / -type d -exec sh -c 'test $(find "{}" -mindepth 1 -type d | wc -l) -eq 0' \; -print | xargs du -hs | sort -rh | head -n 5
+        cmd: sudo du -ahx / | sort -rh | head -n 10
       register: disk_usage
       when: ansible_host == target_ip
 
