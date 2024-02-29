@@ -16,7 +16,7 @@
           organization: Default
 
 #Playbookに対するextra_varsなどによる明示的なパラメーター渡しは機能しないようだ
-#{'variables_needed_to_start': ["'zabbix_host_group' value missing"]}で弾かれる
+#'variables_needed_to_start': ["'zabbix_host_group' value missing"]で弾かれる
 #DefaultでPayloadが丸ごとPlaybookのパラメータとして渡されるので、それを使用する
 #          extra_vars:
 #            zabbix_host_group: "aiueo"
