@@ -3,5 +3,5 @@
 plugin: community.zabbix.zabbix_inventory
 zabbix_server: http://3.112.4.237
 zabbix_user: Admin
-zabbix_password: AppRaE+If7Fbpm2+BMo
+zabbix_password: "AppRaE+If7Fbpm2+BMo"
 validate_certs: false
