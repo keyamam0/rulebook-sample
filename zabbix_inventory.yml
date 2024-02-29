@@ -6,3 +6,9 @@ server_url: "https://3.112.4.238"
 login_user: Admin
 login_password: "AppRaE+If7Fbpm2+BMo"
 validate_certs: false
+groups:
+  - all
+keyed_groups:
+  - prefix: group
+    separator: "_"
+    key: group_names
