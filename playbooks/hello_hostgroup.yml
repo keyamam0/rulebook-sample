@@ -17,9 +17,9 @@
       ansible.builtin.command: 
         cmd: du -a / | sort -n -r | head -n 5
       register: disk_usage
-      when: ansible_host == "{{ target_ip }}"
+      when: ansible_host == target_ip
 
     - name: Show the result
       ansible.builtin.debug:
         msg: "{{ disk_usage.stdout_lines }}"
-      when: ansible_host == "{{ target_ip }}"
+      when: ansible_host == target_ip
