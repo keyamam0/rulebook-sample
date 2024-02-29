@@ -7,7 +7,7 @@ login_user: Admin
 login_password: "AppRaE+If7Fbpm2+BMo"
 validate_certs: false
 keyed_groups:
-  - key: group_names
+  - key: host_groups
     prefix: ''
     separator: ''
 #groups:
