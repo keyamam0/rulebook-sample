@@ -1,6 +1,7 @@
 ---
 - name: Execute df command on hosts from Zabbix host group
-  hosts: localhost
+  #hosts: localhost
+  hosts: all
   gather_facts: no
 
   vars:
