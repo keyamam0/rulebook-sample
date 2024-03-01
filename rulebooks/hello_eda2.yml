@@ -8,7 +8,7 @@
         port: 5000
 
   rules:
-    - name: Handle trigger 232841 '/: Disk space is critically low'
+    - name: Handle trigger 232841 'Disk space is critically low'
       condition: event.payload.trigger_id == 232841
       action:
         run_job_template:
