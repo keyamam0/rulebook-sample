@@ -1,11 +1,10 @@
 ---
 # zabbix_inventory.yml
 plugin: community.zabbix.zabbix_inventory
-#zabbix_server: "https://3.112.4.238"
 
 #env ZABBIX_SERVERでInject
 #server_url: "https://xxx.xxx.xxx.xxx"
-#add_zabbix_groups: true
+add_zabbix_groups: true
 
 #env ZABBIX_USERNAMEでInject
 #login_user: Admin
@@ -20,7 +19,7 @@ validate_certs: false
 groups:
   enabled: zbx_status == "0"
   disabled: zbx_status == "1"
-  
+
 compose:
   ansible_host: (zbx_interfaces | selectattr('type','==','1') | first).ip
 
