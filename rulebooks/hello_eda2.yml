@@ -9,7 +9,7 @@
 
   rules:
     - name: Say Hello test
-      condition: event.payload is defined
+      condition: trigger_id == 23284
       action:
         run_job_template:
           name: 'Server Group Assessment'
