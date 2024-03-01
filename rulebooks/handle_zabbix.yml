@@ -1,0 +1,18 @@
+---
+- name: Handle Zabbix event
+  hosts: all
+
+  sources:
+    - ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 5000
+
+  rules:
+    - name: Disk space critical low
+      condition: event.payload.trigger_id == 23284
+      action:
+        run_job_template:
+          name: 'Server Group Assessment'
+          organization: Default
+        debug:
+         msg: "Received: {{ event.payload }}"
