@@ -2,7 +2,7 @@
 # zabbix_inventory.yml
 plugin: community.zabbix.zabbix_inventory
 #zabbix_server: "https://3.112.4.238"
-server_url: "https://3.112.4.238"
+#server_url: "https://3.112.4.238"
 #add_zabbix_groups: true
 login_user: Admin
 login_password: "AppRaE+If7Fbpm2+BMo"
