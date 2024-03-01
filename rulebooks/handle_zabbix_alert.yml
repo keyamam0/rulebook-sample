@@ -11,11 +11,12 @@
     - name: Handle zabbix alert
       #condition: event.payload is defined
       #condition: event.payload.event_nseverity >= 2
+      condition: event.payload.trigger_id == "23249"
       #警告以上 AND ディスク容量の枯渇
-      condition: 
-        all:
-          #- event.payload.event_nseverity >= 2
-          - event.payload.trigger_id == "23249"
+      #condition: 
+      #  all:
+      #    #- event.payload.event_nseverity >= 2
+      #    - event.payload.trigger_id == "23249"
       action:
         run_job_template:
           name: 'Server Group Assessment'
