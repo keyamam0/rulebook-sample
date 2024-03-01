@@ -10,7 +10,10 @@
   rules:
     - name: Handle zabbix alert
       #condition: event.payload is defined
-      condition: event.payload.nseverity >= 2 and trigger_name = "/: Disk space is low" #警告以上
+      condition: 
+        and:
+          - "event.payload.nseverity >= 2"  #警告以上
+          - "trigger_name == '/: Disk space is low'" #ディスク容量の枯渇
       action:
         run_job_template:
           name: 'Server Group Assessment'
