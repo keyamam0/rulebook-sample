@@ -13,7 +13,7 @@
       #condition: event.payload.event_nseverity >= 2
       #警告以上 AND ディスク容量の枯渇
       condition: 
-        any:
+        and:
           - event.payload.event_nseverity >= 2
           - event.payload.trigger_id == "23249"
       action:
