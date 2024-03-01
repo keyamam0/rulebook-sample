@@ -5,18 +5,16 @@
   gather_facts: no
 
   vars:
-    host_group: "{{ ansible_eda.event.payload.host_groups | default('blank') }}"
     target_ip: "{{ ansible_eda.event.payload.host_ip | default('NA') }}"
 
   tasks:
-    - name: Show df command output
+    - name: Show vars
       debug:
-        msg: "{{ host_group }}{{ target_ip }}"      
+        msg: "{{ target_ip }}"      
 
-    - name: Check if the host matches the specific IP address
+    - name: Checking high-usage directories
       #ansible.builtin.command: 
       ansible.builtin.shell: 
-        #cmd: du -a / | sort -n -r | head -n 5
         cmd: sudo du -ahx / | sort -rh | head -n 10
       register: disk_usage
       when: ansible_host == target_ip
