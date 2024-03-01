@@ -2,25 +2,34 @@
 # zabbix_inventory.yml
 plugin: community.zabbix.zabbix_inventory
 #zabbix_server: "https://3.112.4.238"
-#server_url: "https://3.112.4.238"
+
+#env ZABBIX_SERVERでInject
+#server_url: "https://xxx.xxx.xxx.xxx"
 #add_zabbix_groups: true
-login_user: Admin
-login_password: "AppRaE+If7Fbpm2+BMo"
+
+#env ZABBIX_USERNAMEでInject
+#login_user: Admin
+
+#env ZABBIX_PASSWORDでInject
+#login_password: "xxxxxxxxx"
+
 host_zapi_query:
   selectInterfaces: 'extend'
 validate_certs: false
+
 groups:
   enabled: zbx_status == "0"
   disabled: zbx_status == "1"
+  
 compose:
   ansible_host: (zbx_interfaces | selectattr('type','==','1') | first).ip
+
 #keyed_groups:
 #  - key: zbx_name | lower
 #    prefix: 'env'
 #  - key: zbx_description | lower
 #    prefix: 'test'
 #    separator: ''
-
 #groups:
 #  - all
 #keyed_groups:
