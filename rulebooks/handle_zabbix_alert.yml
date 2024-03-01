@@ -9,7 +9,9 @@
 
   rules:
     - name: Handle zabbix alert
-      condition: event.payload.trigger_id == "23249"
+      #condition: event.payload.trigger_id == "23249"
+      #condition: event.payload.event_name is regex("*Disk space is critically low*")
+      condition: event.payload is defined
       action:
         run_job_template:
           name: 'Server Group Assessment'
