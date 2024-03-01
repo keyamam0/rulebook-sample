@@ -11,7 +11,7 @@
     - name: Handle zabbix alert
       #condition: event.payload is defined
       condition: 
-        and:
+        all:
           - "event.payload.nseverity >= 2"  #警告以上
           - "trigger_name == '/: Disk space is low'" #ディスク容量の枯渇
       action:
