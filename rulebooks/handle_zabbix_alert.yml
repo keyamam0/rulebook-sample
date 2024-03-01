@@ -1,5 +1,5 @@
 ---
-- name: Hello Events
+- name: Handle zabbix alert
   hosts: all
 
   sources:
@@ -8,8 +8,9 @@
         port: 5000
 
   rules:
-    - name: Say Hello test
-      condition: event.payload is defined
+    - name: Handle zabbix alert
+      #condition: event.payload is defined
+      condition: event.payload.nseverity >= 2 and trigger_name = "/: Disk space is low" #警告以上
       action:
         run_job_template:
           name: 'Server Group Assessment'
