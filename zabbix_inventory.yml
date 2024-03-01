@@ -4,7 +4,7 @@ plugin: community.zabbix.zabbix_inventory
 
 #env ZABBIX_SERVERでInject
 #server_url: "https://xxx.xxx.xxx.xxx"
-add_zabbix_groups: true
+#add_zabbix_groups: true
 
 #env ZABBIX_USERNAMEでInject
 #login_user: Admin
