@@ -11,7 +11,8 @@
     - name: Handle zabbix alert
       #condition: event.payload is defined
       #condition: event.payload.event_nseverity >= 2
-      condition: event.payload.trigger_id == "23249"
+      #condition: event.payload.trigger_id == "23249"
+       condition: event.payload.event_name is regex("low")
       #警告以上 AND ディスク容量の枯渇
       #condition: 
       #  all:
