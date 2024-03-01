@@ -14,9 +14,8 @@
       #警告以上 AND ディスク容量の枯渇
       condition: 
         all:
-          - event.payload.event_nseverity >= 2
-          - "event.payload.event_name | regex_search('Disk space is critically low')"
-          #- event.payload.trigger_id == '23249'
+          #- event.payload.event_nseverity >= 2
+          - event.payload.trigger_id == "23249"
       action:
         run_job_template:
           name: 'Server Group Assessment'
