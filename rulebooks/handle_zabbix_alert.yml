@@ -12,7 +12,7 @@
       condition: event.payload is defined
       #condition: 
       #  all:
-      #    - "event.payload.nseverity >= 2"  #警告以上
+      #    - "event.payload.event_nseverity >= 2"  #警告以上
       #    - "event.payload.trigger_name == '/: Disk space is low'" #ディスク容量の枯渇
       action:
         run_job_template:
