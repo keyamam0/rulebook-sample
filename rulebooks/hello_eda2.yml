@@ -1,5 +1,5 @@
 ---
-- name: Hello Events
+- name: Handle Zabbix event
   hosts: all
 
   sources:
@@ -15,4 +15,4 @@
           name: 'Server Group Assessment'
           organization: Default
         debug:
-         msg: "Received: {{ event.payload }}"         
+         msg: "Received: {{ event.payload }}"
