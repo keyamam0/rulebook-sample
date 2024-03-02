@@ -28,6 +28,8 @@
 
         - name: Show the result
           ansible.builtin.debug:
-            msg: "{{ disk_usage.stdout_lines }}{{ disk_usage_top10.stdout_lines }}"
-            
+            msg: |
+              {{ disk_usage.stdout_lines }}
+              {{ disk_usage_top10.stdout_lines }}
+
       when: (zabbix_groups | map(attribute='name') | list | intersect(host_group) | length) > 0
