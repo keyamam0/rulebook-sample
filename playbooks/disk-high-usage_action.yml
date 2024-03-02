@@ -6,6 +6,7 @@
 
   vars:
     target_ip: "{{ ansible_eda.event.payload.host_ip | default('NA') }}"
+    host_group: "{{ ansible_eda.event.payload.host_groups | default('NA') }}"
 
   tasks:
     - name: Show vars
@@ -17,9 +18,14 @@
       ansible.builtin.shell: 
         cmd: sudo du -ahx / | sort -rh | head -n 10
       register: disk_usage
-      when: ansible_host == target_ip
+      #when: ansible_host == target_ip
+      #when: zabbix_groups == host_group
+      when: (zabbix_groups | intersect(host_group)).length > 0
+
 
     - name: Show the result
       ansible.builtin.debug:
         msg: "{{ disk_usage.stdout_lines }}"
-      when: ansible_host == target_ip
+      #when: ansible_host == target_ip
+      #when: zabbix_groups == host_group
+      when: (zabbix_groups | intersect(host_group)).length > 0
