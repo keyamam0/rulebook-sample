@@ -1,37 +1,43 @@
 ---
 # zabbix_inventory.yml
-plugin: community.zabbix.zabbix_inventory
+plugin: zabbix.zabbix.zabbix_inventory
+# https://console.redhat.com/ansible/automation-hub/repo/published/zabbix/zabbix/content/inventory/zabbix_inventory/
+# community.zabbixとは結構違う、env変数が異なったり、host_zapi_queryが無かったり
 
-#env ZABBIX_SERVERでInject
-#server_url: "https://xxx.xxx.xxx.xxx"
-#add_zabbix_groups: true
-
-#env ZABBIX_USERNAMEでInject
-#login_user: Admin
-
+#env ZABBIX_API_URLでInject (CommunityだとZABBIX_SERVERでInject)
+#zabbix_api_url: "https://xxx.xxx.xxx.xxx"
+#env ZABBIX_USERでInject(CommunityだとZABBIX_USERNAMEでInject)
+#zabbix_user: Admin
 #env ZABBIX_PASSWORDでInject
-#login_password: "xxxxxxxxx"
+#zabbix_password: "xxxxxxxxx"
 
-host_zapi_query:
-  selectInterfaces: 'extend'
 validate_certs: false
 
-groups:
-  enabled: zbx_status == "0"
-  disabled: zbx_status == "1"
+cache: true
+cache_plugin: jsonfile
+cache_timeout: 7200
+cache_connection: /tmp/zabbix_inventory
+
+query:
+  selectGroups: ['name']
+  selectInterfaces: ['ip']
 
 compose:
-  ansible_host: (zbx_interfaces | selectattr('type','==','1') | first).ip
+  #属性追加ansible_host <-IPアドレス
+  ansible_host: zabbix_interfaces | map(attribute='ip') | first
+  #属性追加ansible_groups <-後で条件文に使いやすいように、グループをDictionaryからListにして格納
+  ansible_groups: zabbix_groups | map(attribute='name') | list
+  #zabbix_ip_list: zabbix_interfaces | map(attribute='ip')
+  #zabbix_verbose_status: zabbix_status.replace("1", "Disabled").replace("0", "Enabled")
 
-#keyed_groups:
-#  - key: zbx_name | lower
-#    prefix: 'env'
-#  - key: zbx_description | lower
-#    prefix: 'test'
-#    separator: ''
-#groups:
-#  - all
-#keyed_groups:
-#  - prefix: group
-#    separator: "_"
-#    key: group_names
+keyed_groups:
+  - key: zabbix_groups | map(attribute='name')
+    separator: ""
+
+groups:
+  #監視対象であるか否か、使わないかもしれない
+  enabled: zabbix_status == "0"
+  disabled: zabbix_status == "1"
+
+
+
