@@ -6,12 +6,12 @@
 
   vars:
     target_ip: "{{ ansible_eda.event.payload.host_ip | default('NA') }}"
-    host_group: "{{ ansible_eda.event.payload.host_groups | default('NA') }}"
+    host_groups: "{{ ansible_eda.event.payload.host_groups | default('NA') }}"
 
   tasks:
     - name: Show vars
       debug:
-        msg: "{{ target_ip }}{{host_group}}{{zabbix_groups}}"      
+        msg: "{{target_ip}} {{host_groups}} {{ansible_groups}}"      
 
     - name: Checking high-usage directories
       #ansible.builtin.command: 
@@ -34,4 +34,5 @@
           ansible.builtin.debug:
             msg: "{{ disk_usage_top10.stdout_lines }}"
 
-      when: (zabbix_groups | map(attribute='name') | list | intersect(host_group) | length) > 0
+      when: (ansible_groups | intersect(host_groups)).length > 0
+
