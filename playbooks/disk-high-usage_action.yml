@@ -34,5 +34,5 @@
           ansible.builtin.debug:
             msg: "{{ disk_usage_top10.stdout_lines }}"
 
-      when: (ansible_groups | intersect(host_groups)).length > 0
+      when: (ansible_groups | intersect(host_groups) | length) > 0
 
