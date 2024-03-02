@@ -15,18 +15,19 @@
 
     - name: Checking high-usage directories
       #ansible.builtin.command: 
-      ansible.builtin.shell: 
-        cmd: sudo du -ahx / | sort -rh | head -n 10
-      register: disk_usage
-      #when: ansible_host == target_ip
-      #when: zabbix_groups == host_group
-      #when: (zabbix_groups | intersect(host_group)).length > 0
-      when: (zabbix_groups | map(attribute='name') | list | intersect(host_group) | length) > 0
+      block:
+        - name: Checking high-usage directories
+          ansible.builtin.shell: 
+            cmd: df -h --output=target,pcent
+          register: disk_usage
 
-    - name: Show the result
-      ansible.builtin.debug:
-        msg: "{{ disk_usage.stdout_lines }}"
-      #when: ansible_host == target_ip
-      #when: zabbix_groups == host_group
-      #when: (zabbix_groups | intersect(host_group)).length > 0
+        - name: Checking high-usage directories
+          ansible.builtin.shell: 
+            cmd: sudo du -ahx / | sort -rh | head -n 10
+          register: disk_usage_top10
+
+        - name: Show the result
+          ansible.builtin.debug:
+            msg: "{{ disk_usage.stdout_lines }}{{ disk_usage_top10.stdout_lines }}"
+            
       when: (zabbix_groups | map(attribute='name') | list | intersect(host_group) | length) > 0
