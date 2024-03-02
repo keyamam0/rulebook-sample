@@ -21,8 +21,7 @@
       #when: ansible_host == target_ip
       #when: zabbix_groups == host_group
       #when: (zabbix_groups | intersect(host_group)).length > 0
-      when: (zabbix_groups | intersect(host_group) | length) > 0
-
+      when: (zabbix_groups | map(attribute='name') | list | intersect(host_group) | length) > 0
 
     - name: Show the result
       ansible.builtin.debug:
@@ -30,4 +29,4 @@
       #when: ansible_host == target_ip
       #when: zabbix_groups == host_group
       #when: (zabbix_groups | intersect(host_group)).length > 0
-      when: (zabbix_groups | intersect(host_group) | length) > 0
+      when: (zabbix_groups | map(attribute='name') | list | intersect(host_group) | length) > 0
