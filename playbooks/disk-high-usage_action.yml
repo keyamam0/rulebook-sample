@@ -11,7 +11,7 @@
   tasks:
     - name: Show vars
       debug:
-        msg: "{{ target_ip }}"      
+        msg: "{{ target_ip }}{{host_group}}"      
 
     - name: Checking high-usage directories
       #ansible.builtin.command: 
