@@ -36,3 +36,9 @@
 
       when: (ansible_groups | intersect(host_groups) | length) > 0
 
+      rescue:
+        - name: Handle Error
+          ansible.builtin.debug:
+            msg: "WARNING: Something wrong, SSH connection failed?, but continuing."
+
+
