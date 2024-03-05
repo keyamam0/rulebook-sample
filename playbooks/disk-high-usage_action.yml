@@ -20,25 +20,22 @@
           ansible.builtin.shell: 
             cmd: df -h --output=target,pcent
           register: disk_usage
+          ignore_unreachable: yes
 
         - name: Checking high-usage directories
           ansible.builtin.shell: 
             cmd: sudo du -ahx / | sort -rh | head -n 10
           register: disk_usage_top10
+          ignore_unreachable: yes
 
         - name: Show the result
           ansible.builtin.debug:
             msg: "{{ disk_usage.stdout_lines }}"
-
+          
         - name: Show the result2
           ansible.builtin.debug:
             msg: "{{ disk_usage_top10.stdout_lines }}"
 
       when: (ansible_groups | intersect(host_groups) | length) > 0
-
-      rescue:
-        - name: Handle Error
-          ansible.builtin.debug:
-            msg: "WARNING: Something wrong, SSH connection failed?, but continuing."
 
 
