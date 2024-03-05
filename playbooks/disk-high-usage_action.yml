@@ -13,11 +13,6 @@
       debug:
         msg: "{{target_ip}} {{host_groups}} {{ansible_groups}}"      
 
-    - name: Check if host is reachable
-      ansible.builtin.ping:
-      register: ping_result
-      ignore_errors: yes
-
     - name: Checking high-usage directories
       #ansible.builtin.command: 
       block:
@@ -42,8 +37,6 @@
             msg: "{{ disk_usage_top10.stdout_lines }}"
 
       when:
-        - ping_result is defined
-        - ping_result.failed is not defined
         - (ansible_groups | intersect(host_groups) | length) > 0
 
 
