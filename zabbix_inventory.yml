@@ -1,5 +1,3 @@
----
-# zabbix_inventory.yml
 plugin: zabbix.zabbix.zabbix_inventory
 # https://console.redhat.com/ansible/automation-hub/repo/published/zabbix/zabbix/content/inventory/zabbix_inventory/
 # community.zabbixとは結構違う、env変数が異なったり、host_zapi_queryが無かったり
