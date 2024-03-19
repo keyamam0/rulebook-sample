@@ -10,7 +10,7 @@
   rules:
     - name: Disk High Usage Action
       #condition: event.payload.trigger_id == 23284
-      condition: "'Disk space is critically low' in event.payload.event_name"
+      condition: "'Disk space is critically low' in event.payload.trigger_name"
       action:
         run_job_template:
           name: 'Disk High Usage Action'
