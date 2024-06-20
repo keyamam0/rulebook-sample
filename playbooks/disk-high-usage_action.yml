@@ -1,4 +1,8 @@
 ---
+# sn_username: "admin"
+# sn_password: "xxxxx"
+# sn_instance: "https://xxxxx.service-now.com"
+
 - name: Execute df command on hosts from Zabbix host group
   #hosts: localhost
   hosts: all
